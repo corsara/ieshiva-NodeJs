@@ -25,18 +25,41 @@ router.get('/',(req,res)=>{
     
 // })
 
-router.post('/add',(req,res) => {
-    let validData =validImage(req.body);
-    if(validData.error){
-        return res.status(400).json(validData.error.details)
-    }
+// router.post('/add',(req,res) => {
+//     let validData =validImage(req.body);
+//     if(validData.error){
+//         return res.status(400).json(validData.error.details)
+//     }
 
-    imagesModel.insertMany([req.body])
+//     imagesModel.insertMany([req.body])
+//     .then(data=>{
+//         res.status(201).json(data[0])})
+//      .catch(err =>{
+//          res.status(400).json(err)
+//      })    
+// })
+
+
+// router.put('/edit',(req,res)=>{
+//     let validData =validImage(req.body);
+//         if(validData.error){
+//             return res.status(400).json(validData.error.details)
+//         }
+//     imagesModel.updateOne({_id:req.body._id},req.body)
+//     .then(data=>{
+//         res.status(200).json(data)})
+//      .catch(err =>{
+//          res.status(400).json(err)
+//      })    
+    
+// })
+
+router.delete('/del',(req,res)=>{
+    imagesModel.deleteOne({_id:req.body._id})
     .then(data=>{
-        res.status(201).json(data[0])})
-     .catch(err =>{
-         res.status(400).json(err)
-     })    
+        res.json(data)
+    })
 })
+
 
 module.exports = router;
