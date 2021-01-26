@@ -1,8 +1,8 @@
-var express = require('express');
+const express = require('express');
 const { route } = require('.');
 const {imagesModel} = require('../models/imageModel');
 const {validImage } = require('../models/imageModel');
-var router = express.Router()
+const router = express.Router()
 
 // router.get('/',(req, res) => {
 //   res.json({message:"images"});
@@ -54,12 +54,12 @@ router.get('/',(req,res)=>{
     
 // })
 
-router.delete('/del',(req,res)=>{
-    imagesModel.deleteOne({_id:req.body._id})
-    .then(data=>{
-        res.json(data)
-    })
-})
+// router.delete('/del',(req,res)=>{
+//     imagesModel.deleteOne({_id:req.body._id})
+//     .then(data=>{
+//         res.json(data)
+//     })
+// })
 
 
 module.exports = router;

@@ -7,12 +7,14 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "bcrypt": "^5.0.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "hbs": "~4.0.4",
     "http-errors": "~1.6.3",
     "joi": "^17.3.0",
+    "lodash": "^4.17.20",
     "mongoose": "^5.11.13",
     "morgan": "~1.9.1"
   }
