@@ -9,10 +9,20 @@ const mongoConect = require("./db/mongodb-conect");
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var app = express();
-var imagesR = require('./routes/images');
-var studentR = require('./routes/students');
-var loginR = require('./routes/login')
+//para que el sharaat no me aga problema con la coneccion.
+app.all('*', function (req, res, next) {
+  if (!req.get('Origin')) return next();
+  res.set('Access-Control-Allow-Origin', '*');
+  res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
+  res.set('Access-Control-Allow-Headers', 'X-Requested-With,Content-Type,x-auth-token');
+  next();
+});
+  
 
+const imagesR = require('./routes/images');
+const studentR = require('./routes/students');
+const loginR = require('./routes/login')
+const videosR = require('./routes/videos')
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -28,6 +38,7 @@ app.use('/users', usersRouter);
 app.use('/images', imagesR);
 app.use('/students',studentR);
 app.use('/login', loginR);
+app.use('/videos', videosR);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
