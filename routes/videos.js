@@ -11,7 +11,7 @@ const router = express.Router()
 router.get('/',(req,res)=>{
     videosModel.find({})
     .then(data=>{
-        res.json(data)
+       
     })
 })
 
@@ -29,5 +29,22 @@ router.post('/add',(req,res)=>{
         })    
         
     })
+
+router.get("/:catName", (req,res)=>{
+    let catName = req.params.catName;
+    videosModel.find({$or:[{name:catName},{cat:catName}]})
+    .then(data=>{
+        res.json(data)
+    })
+})
+
+router.get("/search", (req,res)=>{
+    let queryS = req.query.q;
+    videosModel.find({$or:[{name:queryS}, {cat:queryS}]}) 
+    .then(data=>{
+        res.json(data)
+    })
+})
+
     
     module.exports = router;
