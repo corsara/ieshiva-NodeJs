@@ -11,7 +11,7 @@ const router = express.Router()
 router.get('/',(req,res)=>{
     videosModel.find({})
     .then(data=>{
-       
+        res.json(data) 
     })
 })
 
@@ -38,13 +38,22 @@ router.get("/:catName", (req,res)=>{
     })
 })
 
-router.get("/search", (req,res)=>{
-    let queryS = req.query.q;
-    videosModel.find({$or:[{name:queryS}, {cat:queryS}]}) 
-    .then(data=>{
-        res.json(data)
-    })
-})
-
+// router.get("/search", (req,res)=>{
+//     let queryS = new RegExp(req.query.q);
+//     videosModel.find({$or:[{name:queryS},{cat:queryS}]}) 
+//     .then(data=>{
+//         res.json(data)
+//     })
+// })
+// router.get('/search', (req, res) => {
+//     //req.params, req.query , req.body
+//     let searchQ =  new RegExp(req.query.q);
+//     videosModel.find({cat:searchQ})
+//     .then(data => {
+//       res.json(data);
+  
+//     })
+//   });
+  
     
     module.exports = router;
